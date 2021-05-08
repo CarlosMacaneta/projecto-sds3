@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { SaleSuccess } from "types/sale";
 import { round } from "utils/format";
+import { BASE_URL } from "utils/request";
 
 type SeriesData = {
     name: string;
@@ -29,7 +30,7 @@ const BarChart = () => {
     });
 
     useEffect(() => {
-        axios.get("/sales/success-by-seller")
+        axios.get(`${BASE_URL}/sales/success-by-seller`)
         .then(response => {
             const data = response.data as SaleSuccess[]
             const myLabels = data.map(x => x.sellerName)
